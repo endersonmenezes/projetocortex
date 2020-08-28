@@ -24,3 +24,30 @@ Para teste e desenvolvimento iremos utilizar o Docker para criar as máquinas.
 # Building Production
 
 A build de produção desse projeto estará disponivel no Heroku, [clicando aqui](https://projetocortex.herokuapp.com/). E os passos abaixo podem ser seguidos para criar o seu próprio app. 
+
+## Arquivos Necessários
+
+O Heroku necessita para identificar que é uma aplicação em Python, do **runtime.txt**, e para identificar que é uma aplicação o **Procfile** identificando o WSGI do Cortex como principal.
+
+Instale o CLI do Heroku para o seu SO. [Clique aqui](https://devcenter.heroku.com/articles/heroku-cli).
+```bash
+# Instale o sistema de gerenciamento de configurações.
+heroku plugins:install heroku-config
+
+# Envie as configurações locais do .env para seu projeto
+heroku config:push -a <nome_do_projeto>
+
+# Realize as migrações necessárias. Esse procedimento é necessário sempre que um deploy conter uma migração.
+heroku run python manage.py migrate -a <nome_do_projeto>
+```
+
+# TODO
+
+- [X] Configuração inicial do Django
+- [ ] Configuração do Docker
+   - [ ] Configuração do RabbitMQ
+   - [ ] Configuração do Celery Service
+   - [ ] Configuração do Celery Beat
+   - [ ] Verificar gerenciamento de Fila
+- [ ] Verificação da API do Banco Central
+- [ ] Configuração do RabbitMQ
