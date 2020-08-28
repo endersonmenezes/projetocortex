@@ -91,6 +91,12 @@ WSGI_APPLICATION = 'cortex.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+DATABASE_ROUTERS = ['cortex.router.DatabaseAppsRouter']
+
+DATABASE_APPS_MAPPING = {
+    'modulo_bc': 'default',
+}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
