@@ -8,6 +8,7 @@ Bibliotecas:
 - [Celery](https://docs.celeryproject.org/en/latest/django/first-steps-with-django.html)
 - [Django Decouple](https://github.com/henriquebastos/python-decouple)
 - [Django Celery Results](https://pypi.org/project/django-celery-results/)
+- [Gunicorn](https://gunicorn.org/#docs)
 
 # Commits
 
@@ -29,7 +30,9 @@ A build de produção desse projeto estará disponivel no Heroku, [clicando aqui
 
 O Heroku necessita para identificar que é uma aplicação em Python, do **runtime.txt**, e para identificar que é uma aplicação o **Procfile** identificando o WSGI do Cortex como principal.
 
-Instale o CLI do Heroku para o seu SO. [Clique aqui](https://devcenter.heroku.com/articles/heroku-cli).
+- Instale o CLI do Heroku para o seu SO. [Clique aqui](https://devcenter.heroku.com/articles/heroku-cli).
+- Crie uma aplicação e selecione o deploy dela como o seu repositório Fork deste no Github.
+
 ```bash
 # Instale o sistema de gerenciamento de configurações.
 heroku plugins:install heroku-config
