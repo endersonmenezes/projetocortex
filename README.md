@@ -73,7 +73,6 @@ heroku run python manage.py migrate -a <nome_do_projeto>
 - [ ] Configuração do Docker
    - [ ] Configuração do RabbitMQ
    - [ ] Configuração do Celery Service
-   - [ ] Configuração do Celery Beat
    - [ ] Verificar gerenciamento de Fila
 - [ ] Verificação da API do Banco Central
 - [ ] Configuração do RabbitMQ

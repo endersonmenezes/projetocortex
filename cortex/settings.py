@@ -179,6 +179,8 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 
+# Acabei de ler melhor o exercicio, o BEAT não vai ser necessário. Mas fica ai o exemplo que daria pra fazer um BEAT
+# em uma cotação especifica, ou em várias.
 # CELERY_BEAT_SCHEDULE = {
 #     'extrator': {
 #         'task': 'modulo_bc.tasks.extrator',
