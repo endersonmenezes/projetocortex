@@ -71,8 +71,8 @@ heroku run python manage.py migrate -a <nome_do_projeto>
 
 - [X] Configuração inicial do Django
 - [X] Configuração do Docker
-   - [ ] Configuração do RabbitMQ
-   - [ ] Configuração do Celery Service
+   - [X] Configuração do RabbitMQ
+   - [X] Configuração do Celery Service
    - [ ] Verificar gerenciamento de Fila
 - [ ] Verificação da API do Banco Central
 - [ ] Configuração do RabbitMQ
