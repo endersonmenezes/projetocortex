@@ -166,3 +166,29 @@ if not DEBUG:
         # django.contrib.auth) you may enable sending PII data.
         send_default_pii=True
     )
+
+# Celery (with RabbitMQ)
+# https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html
+
+CELERY_BROKER_URL = 'amqp://{}:{}@rabbitmq'.format(
+    config('RABBITMQ_LOGIN'),
+    config('RABBITMQ_PASS'),
+)
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_TIMEZONE = 'America/Sao_Paulo'
+
+# CELERY_BEAT_SCHEDULE = {
+#     'extrator': {
+#         'task': 'modulo_bc.tasks.extrator',
+#         'schedule': crontab(
+#             minute="*/30", # A cada 30 minutos
+#             # hour=11,
+#             # minute=10,
+#             day_of_week=[1, 2, 3, 4, 5],
+#         ),
+#         # 'schedule': crontab(hour=17, minute=17, day_of_week=5),
+#         # 'schedule': crontab(), # A cada 1 minuto
+#         # 'args': argumentos,
+#     },
