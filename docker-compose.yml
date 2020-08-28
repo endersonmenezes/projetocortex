@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+  dj:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: dj
+    command: gunicorn cortex.wsgi:application --bind 0.0.0.0:80
+    volumes:
+      - data_static:/backend/static
+      - data_media:/media
+      - data_logs:/logs
+      - data_emails:/emails
+    expose:
+      - 80
+    ports:
+      - 80:80
+    env_file:
+      - .env
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: adm1n
+      RABBITMQ_DEFAULT_VHOST: /
+    expose:
+      - 5672
+    ports:
+      - '5672:5672'
+#      - '15672:15672'
+
+  celery-service:
+    container_name: celery-service
+    build: ./
+    command: celery -A cortex worker -l info
+    volumes:
+      - "data_media:/media/"
+      - "data_logs:/logs/"
+      - "data_emails:/emails/"
+    depends_on:
+      - rabbitmq
+    env_file:
+      - .env
+
+volumes:
+  data_static:
+  data_media:
+  data_logs:
+  data_emails:
