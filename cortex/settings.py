@@ -194,3 +194,37 @@ CELERY_TIMEZONE = 'America/Sao_Paulo'
 #         # 'schedule': crontab(), # A cada 1 minuto
 #         # 'args': argumentos,
 #     },
+
+# Sistema de Logs
+# https://docs.djangoproject.com/en/3.1/topics/logging/
+# O sistema de log é colocado em uma pasta anterior, fora do versionamento.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'applogfile': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '../logs/django.log',
+            'maxBytes': 1024 * 1024 * 15,  # 15MB
+            'backupCount': 10,
+            'formatter': 'simple'
+        },
+    },
+    'loggers': {
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'applogfile']
+        },
+    },
+}
