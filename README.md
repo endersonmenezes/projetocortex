@@ -7,6 +7,7 @@ Bibliotecas:
 - [Django Rest Framework](https://www.django-rest-framework.org/)
 - [Celery](https://docs.celeryproject.org/en/latest/django/first-steps-with-django.html)
 - [Django Decouple](https://github.com/henriquebastos/python-decouple)
+- [Django Celery Results](https://pypi.org/project/django-celery-results/)
 
 # Commits
 

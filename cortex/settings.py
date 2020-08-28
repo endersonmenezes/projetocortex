@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-Party Apps
+    'rest_framework',
+    'django_celery_results',
 
     # LocalApps
 ]
