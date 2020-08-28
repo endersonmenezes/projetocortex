@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 import socket
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration
 
 from dj_database_url import parse as dburl
 from pathlib import Path
@@ -151,3 +154,15 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# SENTRY
+# https://sentry.io/for/django/
+
+if not DEBUG:
+    sentry_sdk.init(
+        dsn=config('SENTRY_SDK'),
+        integrations=[DjangoIntegration(), CeleryIntegration()],
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )
