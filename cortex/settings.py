@@ -137,6 +137,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+# REST FRAMEWORK
+# https://www.django-rest-framework.org/api-guide/settings/
+# Utilizo essa configuração para que toda API que não seja configurado as permissões, somente administradores podem ver.
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser',
+    ),
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
