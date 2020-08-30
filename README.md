@@ -11,6 +11,28 @@ Bibliotecas:
 - [Gunicorn](https://gunicorn.org/#docs)
 - [Requests](https://requests.readthedocs.io/en/master/)
 
+OBS1: Os commits contem um histórico do código.
+
+OBS2: Vou tentar desenvolver o sistema de Fila e Cache.
+
+## 1.0 - Projeto
+
+A rota está disponível na raiz.
+
+Ex: **/?moeda_origem=BRL&moeda_destino=USD&valor_desejado=10&data_cotacao=10/09/2019**
+
+A rota **/admin/** vai conter um administrador das moedas cadastradas.
+
+Para acessar o admin é necessário criar um usuário com o comando:
+````shell
+# Dentro do container dj
+python manage.py createsuper user
+
+# Dentro no heroku
+heroku run python manage.py createsuperuser -a <nome_do_projeto>
+````
+
+
 ## 1.1 - O desafio
 
 Neste projeto o meu intuito é disponibilizar uma API REST que consulte a cotação do Banco do Brasil. 
@@ -30,27 +52,15 @@ Estruturar um sistema de Fila para consumo do serviço onde possa existir uma ma
 
 O resultado deve ser um diagrama.
 
-## 1.3 - Bônus
-
-Tentar desenvolver o sistema de Fila com RabbitMQ e Celery.
-
-# 2 - Commits
-
-O histórico de commits foi feito detalhado, cada "bloco" de alterações, a criação de um modulo, a instação de uma biblioteca.
-
-# 3 - .gitignore
-
-Arquivos como por exemplo .env estariam no .gitignore, no exemplo eu não coloquei para facilitar o clone e build dev. Nos projetos geralmente eu utilizo o site [gitignore.io](https://www.toptal.com/developers/gitignore) para ver uma base, principalmente quando estou iniciando na linguagem, conforme o projeto vai crescendo acabo tendo o meu "exemplo" a ser copiado.
-
-# 4 - Development
+# 2 - Development
 
 Para teste e desenvolvimento iremos utilizar o Docker para criar as máquinas.
 
-# 5 - Production
+# 3 - Production
 
 A build de produção desse projeto estará disponivel no Heroku, [clicando aqui](https://projetocortex.herokuapp.com/). E os passos abaixo podem ser seguidos para criar o seu próprio app. 
 
-## 5.1 - Arquivos Necessários
+## 3.1 - Arquivos Necessários
 
 O Heroku necessita para identificar que é uma aplicação em Python, do **runtime.txt**, e para identificar que é uma aplicação o **Procfile** identificando o WSGI do Cortex como principal.
 
@@ -71,7 +81,7 @@ heroku run python manage.py migrate -a <nome_do_projeto>
 - Use o CloudAMPQ do Heroku
    - [Clique aqui](https://devcenter.heroku.com/articles/cloudamqp#installing-the-add-on) para acessar a documentação.
 
-# 6 - TODO
+# 4 - TODO
 
 - [X] Configuração inicial do Django
 - [X] Configuração do Docker

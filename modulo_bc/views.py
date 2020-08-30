@@ -29,6 +29,8 @@ def converter_moedas(request):
     :paramGET valor_desejado: XXX.XX | Valor desejado para conversão
     :returnJSON valor: XXX.XX | Valor Convertido
     :returnJSON cotacao: DD/MM/YYYY | Data da Cotação que foi possível obter
+
+    Exemplo de Chamada: /?moeda_origem=BRL&moeda_destino=USD&valor_desejado=10&data_cotacao=10/09/2019
     """
     data = dict()
     data_cotacao = request.GET.get('data_cotacao', None)
