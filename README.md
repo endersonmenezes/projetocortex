@@ -50,7 +50,7 @@ Estruturar uma arquitetura que seja capaz de utilizar o serviço desenvolvido ac
 
 Estruturar um sistema de Fila para consumo do serviço onde possa existir uma maneira especial de "furar_fila".
 
-O resultado deve ser um diagrama.
+[O diagrama está disponível aqui.](/arquitetura-cortex.pdf)
 
 # 2 - Development
 
