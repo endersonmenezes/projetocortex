@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 import socket
 import sentry_sdk
+from celery.schedules import crontab
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.celery import CeleryIntegration
 
@@ -183,21 +184,21 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 
-# Acabei de ler melhor o exercicio, o BEAT não vai ser necessário. Mas fica ai o exemplo que daria pra fazer um BEAT
-# em uma cotação especifica, ou em várias.
-# CELERY_BEAT_SCHEDULE = {
-#     'extrator': {
-#         'task': 'modulo_bc.tasks.extrator',
-#         'schedule': crontab(
-#             minute="*/30", # A cada 30 minutos
-#             # hour=11,
-#             # minute=10,
-#             day_of_week=[1, 2, 3, 4, 5],
-#         ),
-#         # 'schedule': crontab(hour=17, minute=17, day_of_week=5),
-#         # 'schedule': crontab(), # A cada 1 minuto
-#         # 'args': argumentos,
-#     },
+# O tempo de 30 minutos foi só para testar haha :)
+CELERY_BEAT_SCHEDULE = {
+    'extrator_moedas': {
+        'task': 'modulo_bc.tasks.get_moedas_bc',
+        'schedule': crontab(
+            minute="*/30", # A cada 30 minutos
+            # hour=11,
+            # minute=10,
+            # day_of_week=[1, 2, 3, 4, 5],
+        ),
+        # 'schedule': crontab(hour=17, minute=17, day_of_week=5),
+        # 'schedule': crontab(), # A cada 1 minuto
+        # 'args': argumentos,
+    },
+}
 
 # Sistema de Logs
 # https://docs.djangoproject.com/en/3.1/topics/logging/
