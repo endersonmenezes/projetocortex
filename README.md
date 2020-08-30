@@ -4,6 +4,7 @@ Este projeto desenvolve uma API REST utilizando o Django. O seu código segue o 
 
 Bibliotecas:
 - [Django](https://docs.djangoproject.com/en/3.1/)
+   - [Cache Framework](https://docs.djangoproject.com/en/3.1/topics/cache/)
 - [Django Rest Framework](https://www.django-rest-framework.org/)
 - [Celery](https://docs.celeryproject.org/en/latest/django/first-steps-with-django.html)
 - [Django Decouple](https://github.com/henriquebastos/python-decouple)

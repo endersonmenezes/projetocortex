@@ -11,12 +11,14 @@ from .models import Moeda
 import json
 import xmltodict
 from .xml_dict import get_json_from_xml
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
+@cache_page(60 * 30)  # Cache de 30 minutos
 def converter_moedas(request):
     """
     API de CoGnversão das Moedas
