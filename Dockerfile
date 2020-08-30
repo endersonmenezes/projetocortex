@@ -2,6 +2,7 @@
 FROM rabbitmq:3-management
 RUN rabbitmq-plugins enable --offline rabbitmq_mqtt rabbitmq_federation_management rabbitmq_stomp
 
+# Python
 FROM python:3
 # Set environment variables
 ENV PYTHONUNBUFFERED 1
@@ -15,7 +16,8 @@ RUN apt update \
 RUN mkdir -p /backend \
     && mkdir -p /emails \
     && mkdir -p /logs \
-    && mkdir -p /media
+    && mkdir -p /media \
+    && mkdir -p /db
 
 # Set work directory.
 WORKDIR /code
