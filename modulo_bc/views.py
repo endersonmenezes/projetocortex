@@ -23,11 +23,12 @@ def converter_moedas(request):
     API Original: https://www3.bcb.gov.br/bc_moeda/rest/converter/<valor_desejado>/1/<codigo_moeda_origem>/<codigo_moeda_destino>/<data>
     API com Data Ultima Cotação: https://www3.bcb.gov.br/bc_moeda/rest/cotacao/fechamento/ultima/1/<codigo_moeda>/<data>
 
-    :paramGET data_cotacao: Padrão DD/MM/AAAA
-    :paramGET moeda_origem: Padrão SWIFT
-    :paramGET moeda_destino: Padrão SWIFT
-    :paramGET valor_desejado: XXX.XX
-    :returnJSON valor: XXX.XX
+    :paramGET data_cotacao: Padrão DD/MM/AAAA | Data da Cotação Desejada
+    :paramGET moeda_origem: Padrão SWIFT | Código da Moeda de Origem
+    :paramGET moeda_destino: Padrão SWIFT | Código da Moeda de Destino
+    :paramGET valor_desejado: XXX.XX | Valor desejado para conversão
+    :returnJSON valor: XXX.XX | Valor Convertido
+    :returnJSON cotacao: DD/MM/YYYY | Data da Cotação que foi possível obter
     """
     data = dict()
     data_cotacao = request.GET.get('data_cotacao', None)
@@ -65,7 +66,10 @@ def converter_moedas(request):
         )
         response = requests.get(url)
         data = get_json_from_xml(response.content)
-        data['cotacao'] = data_cotacao.strftime('%d/%m/%Y')
+        data = {
+            'valor': data['valor-convertido'],
+            'cotacao': data_cotacao.strftime('%d/%m/%Y')
+        }
         return Response(data=data)
     else:
         raise ValidationError
