@@ -171,10 +171,13 @@ if not DEBUG:
 # Celery (with RabbitMQ)
 # https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html
 
-CELERY_BROKER_URL = 'amqp://{}:{}@rabbitmq'.format(
-    config('RABBITMQ_LOGIN'),
-    config('RABBITMQ_PASS'),
-)
+if DEBUG or DOCKER_ON:
+    CELERY_BROKER_URL = 'amqp://{}:{}@rabbitmq'.format(
+        config('RABBITMQ_LOGIN'),
+        config('RABBITMQ_PASS'),
+    )
+else:
+    CELERY_BROKER_URL= config('CLOUDAMQP_URL')
 
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'

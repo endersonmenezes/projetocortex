@@ -9,6 +9,7 @@ Bibliotecas:
 - [Django Decouple](https://github.com/henriquebastos/python-decouple)
 - [Django Celery Results](https://pypi.org/project/django-celery-results/)
 - [Gunicorn](https://gunicorn.org/#docs)
+- [Requests](https://requests.readthedocs.io/en/master/)
 
 ## 1.1 - O desafio
 
@@ -66,6 +67,9 @@ heroku config:push -a <nome_do_projeto>
 # Realize as migrações necessárias. Esse procedimento é necessário sempre que um deploy conter uma migração.
 heroku run python manage.py migrate -a <nome_do_projeto>
 ```
+
+- Use o CloudAMPQ do Heroku
+   - [Clique aqui](https://devcenter.heroku.com/articles/cloudamqp#installing-the-add-on) para acessar a documentação.
 
 # 6 - TODO
 
