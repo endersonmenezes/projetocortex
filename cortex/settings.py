@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django_celery_results',
 
     # LocalApps
+    'modulo_bc',
 ]
 
 MIDDLEWARE = [
