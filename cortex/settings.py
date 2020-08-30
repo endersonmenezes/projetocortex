@@ -191,7 +191,7 @@ CELERY_BEAT_SCHEDULE = {
     'extrator_moedas': {
         'task': 'modulo_bc.tasks.get_moedas_bc',
         'schedule': crontab(
-            minute="*/30", # A cada 30 minutos
+            minute="*/120",  # A cada 120 minutos
             # hour=11,
             # minute=10,
             # day_of_week=[1, 2, 3, 4, 5],

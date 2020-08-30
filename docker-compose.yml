@@ -49,6 +49,7 @@ services:
       - "data_media:/media/"
       - "data_logs:/logs/"
       - "data_emails:/emails/"
+      - data_db:/db
     depends_on:
       - rabbitmq
     env_file:
@@ -62,6 +63,7 @@ services:
       - "data_media:/media/"
       - "data_logs:/logs/"
       - "data_emails:/emails/"
+      - data_db:/db
     depends_on:
       - rabbitmq
     env_file:
