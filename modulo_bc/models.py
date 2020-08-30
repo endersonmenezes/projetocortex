@@ -4,6 +4,7 @@ from django.db import models
 
 
 class Moeda(models.Model):
-    pais = models.CharField(max_length=50)
+    pais_nome = models.CharField(max_length=50)
     pais_codigo = models.SmallIntegerField()
-    sigla_swift = models.CharField(max_length=3)
+    moeda_swift = models.CharField(max_length=3)
+    moeda_codigo = models.SmallIntegerField()
