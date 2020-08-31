@@ -45,6 +45,10 @@ A API recebe **data_cotacao**, **moeda_origem**, **moeda_destino**, **valor_dese
 - valor_desejado: Valor desejado de conversão.
 - valor: Retorno do valor desejado.
 
+## 1.1 - Comentário
+
+Consegui realizar o estudo da API, utilizando o console de desenvolvedor. Achei todas as pontas da API e desenvolvi a solução desejada.
+
 ## 1.2 - O desafio
 
 Estruturar uma arquitetura que seja capaz de utilizar o serviço desenvolvido acima, com um sistema de cache (30 min). 
@@ -52,6 +56,10 @@ Estruturar uma arquitetura que seja capaz de utilizar o serviço desenvolvido ac
 Estruturar um sistema de Fila para consumo do serviço onde possa existir uma maneira especial de "furar_fila".
 
 [O diagrama está disponível aqui.](/arquitetura-cortex.pdf)
+
+## 1.2 - Comentário
+
+Nunca utilizei uma documentação como aprendi na faculdade UML e etc, acho que com mais convicio com isso com certeza iria pegar mais o jeito, a documentação ficou simples, porém de bonus, ativei o sistema de cache, não desenvolvi a fila, por que meu contato com RabbitMQ foi mais pra robotização, apesar de saber que o apply() de uma função pode ir para uma fila especifica. O sistema do Cache do Django também foi algo novo, porém simples, vi que na documentação tem como ativar keys para quando for algo do cache, porém não consegui usar.
 
 # 2 - Development
 
