@@ -176,14 +176,14 @@ else:
     }
 
     AWS_STATIC_LOCATION = 'static'
-    STATICFILES_STORAGE = 'projetocortex.storage_backends.StaticStorage'
+    STATICFILES_STORAGE = 'cortex.storage_backends.StaticStorage'
     STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
 
     AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
-    DEFAULT_FILE_STORAGE = 'projetocortex.storage_backends.PublicMediaStorage'
+    DEFAULT_FILE_STORAGE = 'cortex.storage_backends.PublicMediaStorage'
 
     AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
-    PRIVATE_FILE_STORAGE = 'projetocortex.storage_backends.PrivateMediaStorage'
+    PRIVATE_FILE_STORAGE = 'cortex.storage_backends.PrivateMediaStorage'
 
     AWS_DEFAULT_ACL = 'public-read'
 

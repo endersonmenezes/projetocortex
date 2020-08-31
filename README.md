@@ -117,6 +117,12 @@ heroku run python manage.py shell
 - Estamos utilizando um S3 da Amazon para subir os arquivos.
    - [Clique aqui para ter acesso a documentação](https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html)
 
+````bash
+# Altere sua chave DEBUG para False
+# O comando abaixo, gera os arquivos estáticos e os envia para um S3 na amazon.
+docker run dj python manage.py collectstatic
+
+````
 # 4 - TODO
 
 - [X] Configuração inicial do Django
