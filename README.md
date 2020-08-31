@@ -55,7 +55,25 @@ Estruturar um sistema de Fila para consumo do serviço onde possa existir uma ma
 
 # 2 - Development
 
-Para teste e desenvolvimento iremos utilizar o Docker para criar as máquinas.
+Para teste e desenvolvimento iremos utilizar o Docker para criar as máquinas. Clone o repositório e siga os passos abaixo.
+
+````bash
+# É necessário instalar o Docker em seu computador, e executar dois comandos.
+
+# Monte os containers que iremos utilizar
+docker-compose build
+
+# Suba os containers
+docker-compose up
+
+# Rode as migrations do Banco de Dados
+docker-compose run dj python manage.py migrate
+
+# Execute uma tarefa manual de coletar as moedas
+docker-compose run dj python manage.py shell
+>> from modulo_bc.tasks import get_moedas_bc
+>> get_moedas_bc.apply()
+````
 
 # 3 - Production
 
