@@ -35,8 +35,8 @@ DOCKER_ON = config('DOCKER_ON', default=False, cast=bool)
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
-DEBUG = False
+DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
