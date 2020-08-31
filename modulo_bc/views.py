@@ -64,8 +64,6 @@ def converter_moedas(request):
         except ValueError:
             raise ValidationError(detail='Verifique o valor desejado, se está nos padrões.')
 
-
-
         # ---------------------------------------------
         # Temos que verificar primeiro se a data solicitada existe cotação.
         url_data_cotacao = 'https://www3.bcb.gov.br/bc_moeda/rest/cotacao/fechamento/ultima/1/{}/{}'.format(
@@ -95,4 +93,6 @@ def converter_moedas(request):
         }
         return Response(data=data)
     else:
+        if not data_cotacao and not moeda_origem and not moeda_destino and not valor_desejado:
+            raise ValidationError(detail='Verifique a documentação para utilizar corretamente a API.')
         raise ValidationError
