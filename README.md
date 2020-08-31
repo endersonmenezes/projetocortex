@@ -1,8 +1,9 @@
 # 1 - Projeto Cortex
 
-Este projeto desenvolve uma API REST utilizando o Django. O seu código segue o padrão do Django com a Documentação do Django Rest Framework.
+Este projeto desenvolve uma API REST utilizando o Django, o código segue padrão do Django com a Documentação do Django Rest Framework.
 
-Bibliotecas:
+Bibliotecas Auxiliares:
+
 - [Django](https://docs.djangoproject.com/en/3.1/)
    - [Cache Framework](https://docs.djangoproject.com/en/3.1/topics/cache/)
 - [Django Rest Framework](https://www.django-rest-framework.org/)
@@ -11,10 +12,13 @@ Bibliotecas:
 - [Django Celery Results](https://pypi.org/project/django-celery-results/)
 - [Gunicorn](https://gunicorn.org/#docs)
 - [Requests](https://requests.readthedocs.io/en/master/)
+- [Django Storages](https://django-storages.readthedocs.io/)
 
-OBS1: Os commits contem um histórico do código.
+OBS1: Os commits contém um histórico do código.
 
-OBS2: Vou tentar desenvolver o sistema de Fila e Cache.
+OBS2: ~~Vou tentar desenvolver o sistema de Fila e Cache.~~
+
+OBS2: Consegui ativar o sistema de Cache, mas a fila ficou confusa.
 
 ## 1.0 - Projeto
 
@@ -27,7 +31,7 @@ A rota **/admin/** vai conter um administrador das moedas cadastradas.
 Para acessar o admin é necessário criar um usuário com o comando:
 ````shell
 # Dentro do container dj
-python manage.py createsuper user
+docker run dj python manage.py createsuper user
 
 # Dentro no heroku
 heroku run python manage.py createsuperuser -a <nome_do_projeto>
@@ -37,19 +41,22 @@ heroku run python manage.py createsuperuser -a <nome_do_projeto>
 ## 1.1 - O desafio
 
 Neste projeto o meu intuito é disponibilizar uma API REST que consulte a cotação do Banco do Brasil. 
-A API recebe **data_cotacao**, **moeda_origem**, **moeda_destino**, **valor_desejado**. O retorno é **valor**.
+A API recebe **data_cotacao**, **moeda_origem**, **moeda_destino**, **valor_desejado**. O retorno é **valor**, e data da cotacao, por que em alguns casos o Banco Central não possui histórico e pega uma data próxima.
 
 - data_cotacao:  Data para realizar a cotação.
 - moeda_origem: Código da moeda origem.
 - moeda_final: Código da moeda desejada.
 - valor_desejado: Valor desejado de conversão.
 - valor: Retorno do valor desejado.
+- cotacao: Retorno da data da cotacao.
 
 ## 1.1 - Comentário
 
-Consegui realizar o estudo da API, utilizando o console de desenvolvedor. Achei todas as pontas da API e desenvolvi a solução desejada.
+- Consegui realizar o estudo da API, utilizando o console de desenvolvedor. 
+- Achei todas as pontas da API e desenvolvi a solução desejada.
+- Existe um robo com RabbitMQ realizando uma atualização na lista de moedas, fiz isso para tentar melhorar a performance do cliente.
 
-## 1.2 - O desafio
+## 1.2 - O desafio 2
 
 Estruturar uma arquitetura que seja capaz de utilizar o serviço desenvolvido acima, com um sistema de cache (30 min). 
 
@@ -57,16 +64,18 @@ Estruturar um sistema de Fila para consumo do serviço onde possa existir uma ma
 
 [O diagrama está disponível aqui.](/arquitetura-cortex.pdf)
 
-## 1.2 - Comentário
+## 1.2 - Comentário 2
 
-Nunca utilizei uma documentação como aprendi na faculdade UML e etc, acho que com mais convicio com isso com certeza iria pegar mais o jeito, a documentação ficou simples, porém de bonus, ativei o sistema de cache, não desenvolvi a fila, por que meu contato com RabbitMQ foi mais pra robotização, apesar de saber que o apply() de uma função pode ir para uma fila especifica. O sistema do Cache do Django também foi algo novo, porém simples, vi que na documentação tem como ativar keys para quando for algo do cache, porém não consegui usar.
+Nunca utilizei uma documentação como aprendi na faculdade (UML e etc.), acho que com mais convívio com isso com certeza iria pegar mais o jeito, a documentação ficou simples, porém de bonus, ativei o sistema de cache, não desenvolvi a fila, por que meu contato com RabbitMQ foi mais pra robotização, apesar de saber que o apply() de uma função pode ir para uma fila especifica. 
+
+O sistema do Cache do Django também foi algo novo, porém simples, vi que na documentação tem como ativar keys para quando for algo do cache, porém não consegui usar isso, vou continuar pesquisando sobre a condicional de quando for cache ou não, vai que até quando você ler eu achei algo :)
 
 # 2 - Development
 
 Para teste e desenvolvimento iremos utilizar o Docker para criar as máquinas. Clone o repositório e siga os passos abaixo.
 
 ````bash
-# É necessário instalar o Docker em seu computador, e executar dois comandos.
+# É necessário instalar o Docker em seu computador, e executar os comandos.
 
 # Monte os containers que iremos utilizar
 docker-compose build
@@ -90,10 +99,10 @@ A build de produção desse projeto estará disponivel no Heroku, [clicando aqui
 
 ## 3.1 - Arquivos Necessários
 
-O Heroku necessita para identificar que é uma aplicação em Python, do **runtime.txt**, e para identificar que é uma aplicação o **Procfile** identificando o WSGI do Cortex como principal.
+Para identificar que é uma aplicação em Python o Heroku utiliza o **runtime.txt**, e para identificar que é uma aplicação web com Workers utilizamos o **Procfile**, identificando o WSGI do Cortex como principal.
 
 - Instale o CLI do Heroku para o seu SO. [Clique aqui](https://devcenter.heroku.com/articles/heroku-cli).
-- Crie uma aplicação e selecione o deploy dela como o seu repositório Fork deste no Github.
+- Crie uma aplicação e selecione o deploy dela como o seu repositório Fork deste.
 
 ```bash
 # Instale o sistema de gerenciamento de configurações.
