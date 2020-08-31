@@ -8,6 +8,7 @@ services:
     container_name: dj
     command: gunicorn cortex.wsgi:application --bind 0.0.0.0:8000
     volumes:
+      - ./:/backend/
       - data_media:/media
       - data_logs:/logs
       - data_emails:/emails
@@ -49,7 +50,7 @@ services:
       - "data_media:/media/"
       - "data_logs:/logs/"
       - "data_emails:/emails/"
-      - data_db:/db
+      - "data_db:/db"
     depends_on:
       - rabbitmq
     env_file:
