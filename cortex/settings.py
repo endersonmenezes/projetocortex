@@ -222,7 +222,7 @@ LOGGING = {
         'applogfile': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '../logs/django.log',
+            'filename': 'logs/django.log',
             'maxBytes': 1024 * 1024 * 15,  # 15MB
             'backupCount': 10,
             'formatter': 'simple'
