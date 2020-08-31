@@ -73,6 +73,7 @@ docker-compose run dj python manage.py migrate
 docker-compose run dj python manage.py shell
 >> from modulo_bc.tasks import get_moedas_bc
 >> get_moedas_bc.apply()
+# Pressione Ctrl + D para sair.
 ````
 
 # 3 - Production
