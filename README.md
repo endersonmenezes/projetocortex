@@ -114,6 +114,9 @@ heroku run python manage.py shell
 - Use o CloudAMPQ do Heroku
    - [Clique aqui](https://devcenter.heroku.com/articles/cloudamqp#installing-the-add-on) para acessar a documentação.
 
+- Estamos utilizando um S3 da Amazon para subir os arquivos.
+   - [Clique aqui para ter acesso a documentação](https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html)
+
 # 4 - TODO
 
 - [X] Configuração inicial do Django
