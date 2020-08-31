@@ -96,6 +96,11 @@ heroku config:push -a <nome_do_projeto>
 
 # Realize as migrações necessárias. Esse procedimento é necessário sempre que um deploy conter uma migração.
 heroku run python manage.py migrate -a <nome_do_projeto>
+
+# Baixe as moedas inicialmente
+heroku run python manage.py shell
+>> from modulo_bc.tasks import get_moedas_bc
+>> get_moedas_bc.apply()
 ```
 
 - Use o CloudAMPQ do Heroku
